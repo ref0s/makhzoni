@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Futuristic graphite-based color scheme */
+    --background: 220 10% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 8% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 10% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Neon blue primary */
+    --primary: 191 100% 50%;
+    --primary-foreground: 220 10% 8%;
+
+    /* Mint green secondary */
+    --secondary: 156 100% 50%;
+    --secondary-foreground: 220 10% 8%;
+
+    /* Muted graphite tones */
+    --muted: 220 6% 18%;
+    --muted-foreground: 220 4% 65%;
+
+    /* Accent for highlights */
+    --accent: 191 100% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Destructive red */
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and inputs */
+    --border: 220 6% 20%;
+    --input: 220 8% 15%;
+    --ring: 191 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(191, 100%, 50%) 0%, hsl(220, 100%, 55%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220, 10%, 10%) 0%, hsl(220, 10%, 8%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220, 8%, 14%) 0%, hsl(220, 8%, 11%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsla(191, 100%, 50%, 0.15);
+    --shadow-card: 0 8px 32px hsla(0, 0%, 0%, 0.4);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar */
+    --sidebar-background: 220 10% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 191 100% 50%;
+    --sidebar-primary-foreground: 220 10% 8%;
+    --sidebar-accent: 220 8% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 6% 18%;
+    --sidebar-ring: 191 100% 50%;
+  }
+
+  .dark {
+    --background: 220 10% 8%;
+    --foreground: 0 0% 98%;
+    --card: 220 8% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 10% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 191 100% 50%;
+    --primary-foreground: 220 10% 8%;
+    --secondary: 156 100% 50%;
+    --secondary-foreground: 220 10% 8%;
+    --muted: 220 6% 18%;
+    --muted-foreground: 220 4% 65%;
+    --accent: 191 100% 45%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 6% 20%;
+    --input: 220 8% 15%;
+    --ring: 191 100% 50%;
+    --sidebar-background: 220 10% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 191 100% 50%;
+    --sidebar-primary-foreground: 220 10% 8%;
+    --sidebar-accent: 220 8% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 6% 18%;
+    --sidebar-ring: 191 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-card/50 backdrop-blur-xl border border-border/50;
+  }
+
+  /* Glow effect for primary elements */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+}
