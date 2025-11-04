@@ -19,7 +19,7 @@ const createCategory = (req, res) => {
     return res.status(409).json({ message: 'Category with this name already exists' });
   }
 
-  const id = uuidv4();
+  const id = uuid();
   const category = categoryModel.createCategory({
     id,
     name,

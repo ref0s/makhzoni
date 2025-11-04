@@ -18,7 +18,7 @@ const createItem = (req, res) => {
     return res.status(400).json({ message: 'Missing required fields: name, quantity, minThreshold, price' });
   }
 
-  const id = uuidv4();
+  const id = uuid();
   const item = itemModel.createItem({
     id,
     name,
