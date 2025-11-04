@@ -1,5 +1,5 @@
 const itemModel = require('../models/itemModel');
-const { v4: uuidv4 } = require('uuid');
+const { uuid } = require('uuidv4');
 
 const listItems = (req, res) => {
   const items = itemModel.getItems();

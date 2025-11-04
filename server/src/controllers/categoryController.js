@@ -1,6 +1,6 @@
 const categoryModel = require('../models/categoryModel');
 const itemModel = require('../models/itemModel');
-const { v4: uuidv4 } = require('uuid');
+const { uuid } = require('uuidv4');
 
 const listCategories = (req, res) => {
   const categories = categoryModel.getAllCategories();
