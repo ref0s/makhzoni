@@ -70,8 +70,8 @@ const Dashboard = () => {
   const fetchData = useCallback(async () => {
     try {
       const [itemsResponse, categoriesResponse] = await Promise.all([
-        axios.get("http://localhost:3000/items"),
-        axios.get("http://localhost:3000/categories"),
+        axios.get("https://makhzoni.api.bussiness-tracker.com.ly/items"),
+        axios.get("https://makhzoni.api.bussiness-tracker.com.ly/categories"),
       ]);
       setItems(itemsResponse.data);
       setCategories(categoriesResponse.data);
@@ -160,7 +160,10 @@ const Dashboard = () => {
     newItem: Omit<InventoryItem, "id" | "lastUpdated">
   ) => {
     try {
-      await axios.post("http://localhost:3000/items", newItem);
+      await axios.post(
+        "https://makhzoni.api.bussiness-tracker.com.ly/items",
+        newItem
+      );
       toast.success(`${newItem.name} added successfully`);
       fetchData(); // Refetch data to update UI
     } catch (error: any) {
@@ -175,7 +178,10 @@ const Dashboard = () => {
     updates: Partial<InventoryItem>
   ) => {
     try {
-      await axios.patch(`http://localhost:3000/items/${id}`, updates);
+      await axios.patch(
+        `https://makhzoni.api.bussiness-tracker.com.ly/items/${id}`,
+        updates
+      );
       toast.success("Item updated successfully");
       fetchData(); // Refetch data to update UI
     } catch (error: any) {
@@ -187,7 +193,9 @@ const Dashboard = () => {
 
   const handleDeleteItem = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3000/items/${id}`);
+      await axios.delete(
+        `https://makhzoni.api.bussiness-tracker.com.ly/items/${id}`
+      );
       toast.success("Item deleted successfully");
       fetchData(); // Refetch data to update UI
     } catch (error: any) {
@@ -199,7 +207,10 @@ const Dashboard = () => {
 
   const handleAddCategory = async (newCategory: Omit<Category, "id">) => {
     try {
-      await axios.post("http://localhost:3000/categories", newCategory);
+      await axios.post(
+        "https://makhzoni.api.bussiness-tracker.com.ly/categories",
+        newCategory
+      );
       toast.success(`Category "${newCategory.name}" added`);
       fetchData(); // Refetch data to update UI
     } catch (error: any) {
@@ -211,7 +222,10 @@ const Dashboard = () => {
 
   const handleRenameCategory = async (id: string, name: string) => {
     try {
-      await axios.patch(`http://localhost:3000/categories/${id}`, { name });
+      await axios.patch(
+        `https://makhzoni.api.bussiness-tracker.com.ly/categories/${id}`,
+        { name }
+      );
       toast.success("Category updated successfully");
       fetchData(); // Refetch data to update UI
     } catch (error: any) {
@@ -224,8 +238,8 @@ const Dashboard = () => {
   const handleDeleteCategory = async (id: string, force: boolean = false) => {
     try {
       const url = force
-        ? `http://localhost:3000/categories/${id}?force=true`
-        : `http://localhost:3000/categories/${id}`;
+        ? `https://makhzoni.api.bussiness-tracker.com.ly/categories/${id}?force=true`
+        : `https://makhzoni.api.bussiness-tracker.com.ly/categories/${id}`;
       const response = await axios.delete(url);
 
       if (!response.data.success && response.data.dependentItems) {
@@ -272,7 +286,12 @@ const Dashboard = () => {
               <Button variant="ghost" size="icon" onClick={handleLogout}>
                 <LogOut className="w-4 h-4" />
               </Button>
-              <Button variant="ghost" size="icon" onClick={() => setIsLowStockDrawerOpen(true)} className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsLowStockDrawerOpen(true)}
+                className="relative"
+              >
                 <BellRing className="w-4 h-4" />
                 {lowStockItems.length > 0 && (
                   <span className="absolute -top-1 -right-1 flex h-3 w-3">
@@ -303,7 +322,10 @@ const Dashboard = () => {
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto">
-            <Select value={activeCategoryId} onValueChange={setActiveCategoryId}>
+            <Select
+              value={activeCategoryId}
+              onValueChange={setActiveCategoryId}
+            >
               <SelectTrigger className="w-full sm:w-48 bg-input border-border">
                 <SelectValue />
               </SelectTrigger>
@@ -317,7 +339,10 @@ const Dashboard = () => {
               </SelectContent>
             </Select>
 
-            <Select value={activeStatusFilter} onValueChange={setActiveStatusFilter}>
+            <Select
+              value={activeStatusFilter}
+              onValueChange={setActiveStatusFilter}
+            >
               <SelectTrigger className="w-full sm:w-48 bg-input border-border">
                 <SelectValue />
               </SelectTrigger>
@@ -347,7 +372,11 @@ const Dashboard = () => {
               </Button>
             </div>
 
-            <Button variant="glass" size="sm" onClick={() => setIsCategoryManagerOpen(true)}>
+            <Button
+              variant="glass"
+              size="sm"
+              onClick={() => setIsCategoryManagerOpen(true)}
+            >
               Categories
             </Button>
             <Button variant="hero" onClick={() => setIsAddDialogOpen(true)}>

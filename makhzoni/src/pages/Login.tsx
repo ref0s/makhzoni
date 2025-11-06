@@ -18,25 +18,28 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation
     if (!email || !email.includes("@")) {
       toast.error("Invalid email format");
       return;
     }
-    
+
     if (password.length < 8) {
       toast.error("Password must be at least 8 characters");
       return;
     }
 
     setIsLoading(true);
-    
+
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://makhzoni.api.bussiness-tracker.com.ly/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.admin) {
         // Store admin info in session storage or context if needed
@@ -47,7 +50,8 @@ const Login = () => {
         toast.error("Login failed: No admin data received.");
       }
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || "Login failed. Please try again.";
+      const errorMessage =
+        error.response?.data?.message || "Login failed. Please try again.";
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -66,7 +70,9 @@ const Login = () => {
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Makhzoni
             </h1>
-            <p className="text-muted-foreground mt-2">Inventory Management System</p>
+            <p className="text-muted-foreground mt-2">
+              Inventory Management System
+            </p>
           </div>
         </div>
 
@@ -123,9 +129,9 @@ const Login = () => {
               </label>
             </div>
 
-            <Button 
-              type="submit" 
-              variant="hero" 
+            <Button
+              type="submit"
+              variant="hero"
               className="w-full"
               disabled={isLoading}
             >
